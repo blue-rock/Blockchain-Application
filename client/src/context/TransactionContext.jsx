@@ -58,23 +58,22 @@ export const TransactionProvider = ({children}) => {
         if(accounts.length)
         {
             setCurrentAccount(accounts[0]);
-            //getAllTransactions();
+            getAllTransactions();
         }
         else{
             console.log("No Accounts Found")
         }
         }catch(error){
             console.log(error);
-            throw new Error("No Ethereum Object");
         }
        // console.log(accounts);
-    }
+    };
 
     //
     const checkIfTransactionsExists = async () => {
         try {
           if (ethereum) {
-            const transactionsContract = createEthereumContract();
+            const transactionsContract = getEthereumContract();
             const currentTransactionCount = await transactionsContract.getTransactionCount();
     
             window.localStorage.setItem("transactionCount", currentTransactionCount);
